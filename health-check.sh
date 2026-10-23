@@ -1,10 +1,24 @@
 #!/bin/bash
 
-echo "Date: $(date)"
+echo "=== DevOps Health Check ==="
 
+echo "Date: $(date)"
+echo "User: $(whoami)"
+echo "Hostname: $(hostname)"
+
+echo "=== Disk Usage ==="
+df -h /
+
+echo "=== Memory Usage ==="
+free -h
+
+echo "=== Git Check ==="
 if command -v git >/dev/null 2>&1; then
-    echo "Git: $(git --version)"
+    git --version
 else
-    echo "ERROR: Git is missing"
+    echo "ERROR: Git is not installed"
     exit 1
 fi
+
+echo "=== Health Check Completed ==="
+
